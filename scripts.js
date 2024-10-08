@@ -1,6 +1,6 @@
 import data from './data.js'
 
-const itemsContainer = document.querySelector('items')
+const itemsContainer = document.querySelector('#items')
 
 // the length of our data determines how many times this loop is run
 for (let i = 0; i < data.length; i += 1 ) {
@@ -16,8 +16,9 @@ for (let i = 0; i < data.length; i += 1 ) {
     // add the image to the div
     newDiv.appendChild(img)
 
-
     // put new div inside items container
+    console.log(img)
+
     itemsContainer.appendChild(newDiv)
 
     // create a paragraph element
@@ -31,10 +32,16 @@ for (let i = 0; i < data.length; i += 1 ) {
     price.innerText = data[i].price
     newDiv.appendChild(price)
 
-     
-
 }
 
+    const button = document.createElement('button')
+
+    button.dataset.id = data[i].name
+
+    button.dataset.price = data[i].price
+
+    button.innerHTML = "Add to Cart"
+    newDiv.appendChild(button)
 
 // reminder notes for a new developer:
 

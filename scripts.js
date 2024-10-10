@@ -17,7 +17,6 @@ for (let i = 0; i < data.length; i += 1 ) {
     newDiv.appendChild(img)
 
     // put new div inside items container
-    console.log(img)
 
     itemsContainer.appendChild(newDiv)
 
@@ -32,17 +31,15 @@ for (let i = 0; i < data.length; i += 1 ) {
     price.innerText = data[i].price
     newDiv.appendChild(price)
 
-}
-
     const button = document.createElement('button')
 
     button.dataset.id = data[i].name
 
     button.dataset.price = data[i].price
-
     button.innerHTML = "Add to Cart"
     newDiv.appendChild(button)
 
+}
 // reminder notes for a new developer:
 
 //      const newDiv = document.createElement('div') 

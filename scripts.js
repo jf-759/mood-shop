@@ -123,10 +123,23 @@ const removeFromCart = (id) => {
         }
     }
  }
- 
+
+const getCartTotal = () => {
+    let total = 0 // define this variable before the for loop to sum up all the items in cart.
+        for (let i = 0; i < cart.length; i += 1) {
+            const item = cart[i]
+            total += item.qty * item.price
+        }
+        return total.toFixed(2) // returns the total amount in cart
+}
+
+const theTotal = getCartTotal()
+console.log(theTotal)
+
 const displayCart = () => {
+    console.log(cart)
     let cartStr = ''
-    for (let i = 0; i < cart.length; i += 1){
+    for (let i = 0; i < cart.length; i += 1) {
         const item = cart[i]
         cartStr += `<li>
             <span>${item.id}</span>
@@ -137,6 +150,9 @@ const displayCart = () => {
             <button class="button-sub" data-id="${item.id}">-</button>
         </li>`
     }
+
+    const cartTotal = getCartTotal()
+    cartStr += `<li>Total: ${cartTotal}</li>`
 
     const cartItems = document.querySelector('#cart-items')
     cartItems.innerHTML = cartStr
@@ -167,7 +183,6 @@ document.body.addEventListener('keydown', (e) => {
         }
     }
 })
-
 
 // document.body.addEventListener('click', (e) => {
 //     console.log(e.target)

@@ -32,6 +32,7 @@ for (let i = 0; i < data.length; i += 1 ) {
     newDiv.appendChild(price)
 
     const button = document.createElement('button')
+    button.className = 'add-to-cart'
 
     button.dataset.id = data[i].name
 
@@ -41,8 +42,27 @@ for (let i = 0; i < data.length; i += 1 ) {
 
 }
 
+const cart = []
+
 const button = document.createElement('button')
 button.className = 'add-to-cart'
+
+document.body.addEventListener('click', (e) => {
+    if (e.target.matches('.add-to-cart')) {
+    console.log(e.target)
+    const addItemToCart = (id, price) => {
+        for (let i = 0; i < cart.length; i += 1) {
+            if (cart[i].id === id) {
+                cart[i].qty += 1
+                return
+            }
+        }
+        cart.push({id, price, qty: 1})
+    }
+    }})
+// document.body.addEventListener('click', (e) => {
+//     console.log(e.target)
+// })
 // reminder notes for a new developer:
 
 //      const newDiv = document.createElement('div') 

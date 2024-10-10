@@ -47,6 +47,7 @@ const cart = []
 const button = document.createElement('button')
 button.className = 'add-to-cart'
 
+  
 document.body.addEventListener('click', (e) => {
     if (e.target.matches('.add-to-cart')) {
     console.log(e.target)
@@ -60,9 +61,68 @@ document.body.addEventListener('click', (e) => {
         cart.push({id, price, qty: 1})
     }
     addItemToCart(e.target.dataset.id, e.target.dataset.price)
+    console.log(cart)
     displayCart()
- }})
+    const removeFromCart = (id) => {
+// Loop over items in cart
+    for (let i = 0; i < cart.length; i += 1 ) {
+        // get an item 
+        const item = cart[i]
+        // Does id match the item id? 
+        if (id === item.id) {
+        // if so, subtract 1 from item qty
+            item.qty -= 1
+            // Check if the qty is 0
+            if (item.qty === 0) {
+                // If so remove this item from the cart
+                cart.splice(i, 1)
+            }
+            return 
+        }
+    }
+}
+    } else if (e.target.matches('.button-add')) {
+    const name = e.target.dataset.id
+    addToCart(name)
+    displayCart() 
+    // increase qty by 1
+    } else if (e.target.matches('.button-sub')) {
+    
+    const name = e.target.dataset.id
+    removeFromCart(name)
+    displayCart()
+    // decrease qty by 1
+    }
+ })
 
+const removeFromCart = (id) => {
+// Loop over items in cart
+    for (let i = 0; i < cart.length; i += 1 ) {
+        // get an item 
+        const item = cart[i]
+        // Does id match the item id? 
+        if (id === item.id) {
+        // if so, subtract 1 from item qty
+            item.qty -= 1
+            // Check if the qty is 0
+            if (item.qty === 0) {
+                // If so remove this item from the cart
+                cart.splice(i, 1)
+            }
+            return 
+        }
+    }
+}
+
+ const addToCart = (id) => {
+    for (let i = 0; i < cart.length; i += 1) {
+        const item = cart [i]
+        if (id === item.id) {
+            item.qty += 1
+            return
+        }
+    }
+ }
  
 const displayCart = () => {
     let cartStr = ''

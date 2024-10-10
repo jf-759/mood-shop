@@ -40,6 +40,9 @@ for (let i = 0; i < data.length; i += 1 ) {
     newDiv.appendChild(button)
 
 }
+
+const button = document.createElement('button')
+button.className = 'add-to-cart'
 // reminder notes for a new developer:
 
 //      const newDiv = document.createElement('div') 

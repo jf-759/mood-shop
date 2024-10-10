@@ -142,6 +142,32 @@ const displayCart = () => {
     cartItems.innerHTML = cartStr
 }
 
+document.body.addEventListener('keydown', (e) => {
+    if (e.target.matches('.input-qty')) {
+        if (e.key === "Enter") {
+            const name = e.target.dataset.id
+            const value = parseInt(e.target.value)
+            const updateCart = (id, val) => {
+                console.log(id, val)
+                for (let i = 0; i < cart.length; i += 1) {
+                    const item = cart [i]
+                    if (id === item.id) {
+                        item.qty = val
+
+                        if (item.qty < 1) {
+                            cart.splice(i, 1)
+                        }
+                        return
+                    }
+                }
+            }
+            updateCart (name, value)
+            console.log(e)
+            displayCart()
+        }
+    }
+})
+
 
 // document.body.addEventListener('click', (e) => {
 //     console.log(e.target)
